@@ -2,14 +2,14 @@ package food.industry
 
 import kotlin.collections.MutableList
 
-class LunchFoodFactory {
+class LunchFoodMenu {
     private var menu: MutableList<IFood> = mutableListOf()
 
     constructor() {
-        addMenu()
+        initMenu()
     }
 
-    private fun addMenu() {
+    private fun initMenu() {
         menu.addAll(
             listOf(
                 LunchFood("lun01", "Ca Loc Kho Tieu", 23000.0),
@@ -30,7 +30,11 @@ class LunchFoodFactory {
         return menu
     }
 
-    fun getLunch(index: Int): IFood {
+    fun setMenu(newFood: IFood) {
+        menu.add(newFood)
+    }
+
+    fun getMenuItem(index: Int): IFood {
         return menu.get(index)
     }
 }
