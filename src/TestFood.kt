@@ -1,33 +1,63 @@
-import food.industry.LunchFoodFactory
+import food.industry.IFood
+import food.industry.LunchFoodMenu
+import orders.Order
+import java.lang.Exception
 
 fun main(args: Array<String>) {
-    var foodMenu = LunchFoodFactory()
+    var foodMenu = LunchFoodMenu()
     println("*** Menu Hom Nay ***")
     displayMenu(foodMenu)
-    userChoice(foodMenu)
+    multiChoice(foodMenu)
+//    userChoice(foodMenu)
 }
 
-fun displayMenu(foodMenu: LunchFoodFactory) {
+fun displayMenu(foodMenu: LunchFoodMenu) {
     for ((index, item) in foodMenu.getMenu().withIndex()) {
         println("${index + 1}. $item")
     }
 }
 
-fun userChoice(foodMenu: LunchFoodFactory) {
+fun multiChoice(foodMenu: LunchFoodMenu) {
+    var orders = Order()
+    var userChoice = userChoice(foodMenu)
+    orders.addOrder(userChoice)
+
+    var isContinueChoice = true
+    while (isContinueChoice) {
+        println("Ban co muon chon them khong (y/n): ")
+        var choice = readLine()
+        if (choice == "y") {
+            orders.addOrder(userChoice)
+        } else {
+            isContinueChoice = false
+        }
+    }
+
+    println("Ban chon: ")
+    for (item in orders.viewAllOrder()) {
+        println(item)
+    }
+}
+
+fun userChoice(foodMenu: LunchFoodMenu): IFood {
     var choice: String?
     do {
         var isInvalidChoice = false
         print("Vui long nhap so thu tu cua mon an: ")
         choice = readLine()
-        var index: Int? = choice?.toInt()
-        // chua validate du lieu la so khi nhap vao
-        if (index!! > foodMenu.getMenu().size) {
+        try {
+            if (choice?.toInt()!! > foodMenu.getMenu().size) {
+                isInvalidChoice = true
+                println("Chon dung so di thim")
+            }
+        } catch (e: Exception) {
             isInvalidChoice = true
-            println("Moi ban chon lai")
+            println("Nhap lai bang so di thim")
         }
+        // chua validate du lieu phai la so khi nhap vao
     } while (isInvalidChoice)
 
-    var userChoice = foodMenu.getLunch(choice?.toInt()!! - 1)
-    println("Ban chon: $userChoice")
-
+    var userChoice = foodMenu.getMenuItem(choice?.toInt()!! - 1)
+//    println("Ban chon: $userChoice")
+    return userChoice
 }
