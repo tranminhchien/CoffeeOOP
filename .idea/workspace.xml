@@ -12,8 +12,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Kotlin Interface" />
-        <option value="Kotlin Class" />
         <option value="Kotlin File" />
+        <option value="Kotlin Class" />
       </list>
     </option>
   </component>
@@ -91,6 +91,7 @@
       <option name="presentableId" value="Default" />
       <updated>1568970566584</updated>
       <workItem from="1568970570690" duration="3699000" />
+      <workItem from="1569133621574" duration="4676000" />
     </task>
     <servers />
   </component>

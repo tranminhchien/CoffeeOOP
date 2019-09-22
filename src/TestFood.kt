@@ -5,6 +5,7 @@ fun main(args: Array<String>) {
     println("*** Menu Hom Nay ***")
     displayMenu(foodMenu)
     userChoice(foodMenu)
+
 }
 
 fun displayMenu(foodMenu: LunchFoodFactory) {
@@ -15,6 +16,7 @@ fun displayMenu(foodMenu: LunchFoodFactory) {
 
 fun userChoice(foodMenu: LunchFoodFactory) {
     var choice: String?
+
     do {
         var isInvalidChoice = false
         print("Vui long nhap so thu tu cua mon an: ")
