@@ -7,7 +7,7 @@ fun main(args: Array<String>) {
     var foodMenu = LunchFoodMenu()
     println("*** Menu Hom Nay ***")
     displayMenu(foodMenu)
-
+    multiChoice(foodMenu)
 }
 
 fun displayMenu(foodMenu: LunchFoodMenu) {
@@ -20,17 +20,20 @@ fun multiChoice(foodMenu: LunchFoodMenu) {
     var orders = Order()
     var userChoice = userChoice(foodMenu)
     orders.addOrder(userChoice)
-
     var isContinueChoice = true
-    while (isContinueChoice) {
+    do{
+
+
         println("Ban co muon chon them khong (y/n): ")
         var choice = readLine()
-        if (choice == "y") {
-            orders.addOrder(userChoice)
-        } else {
+        if (choice == "n") {
             isContinueChoice = false
-        }
-    }
+        }else if ( choice == "y"){
+            var userChoice = userChoice(foodMenu)
+            orders.addOrder(userChoice)
+        }else
+            println("Plz y|n")
+    }while (isContinueChoice)
 
     println("Ban chon: ")
     for (item in orders.viewAllOrder()) {
